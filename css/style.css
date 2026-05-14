@@ -1,0 +1,1257 @@
+@charset "UTF-8";
+
+/* reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* bese */
+body {
+  /* 多分使わない(予備) */
+  /* font-family: "Noto serif JP", serif; */
+  line-height: 1.6;
+  color: #222;
+  background-color: #fff;
+}
+
+/* HERO画面 */
+.HERO {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  /* ナビゲーション枠--------------------- */
+  padding-right: calc(var(--side-w) + var(--frame-pad));
+}
+
+.HERO-spece {
+  position: relative;
+  min-height: 50vh;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  background: #fff;
+}
+
+.HERO-before {
+  position: absolute;
+  inset: 0;
+  height: calc((100%-10px) / 2);
+  background-image: url(../img/before.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  opacity: 1;
+  z-index: 1;
+  animation: before-fadeout 1s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.HERO-text02 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 5rem;
+  z-index: 2;
+  opacity: 0;
+
+  animation: text02-fadein 1s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes before-fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes text02-fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.HERO-line {
+  position: absolute;
+  top: calc((100%-10px) / 2);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #000;
+  animation: line-grow 2s ease-out forwards;
+}
+
+@keyframes line-grow {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.HERO-cacth {
+  min-height: 50vh;
+  position: relative;
+  /* 箱の中からはみ出したものをどう処理するか hiddenはみせないようにする意味 */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.HERO-text01 {
+  position: relative;
+  z-index: 1;
+  font-size: 5rem;
+
+  animation: text01-fadeout 0.8s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.HERO-after {
+  position: absolute;
+  inset: 0;
+  height: calc((100%-10px) / 2);
+  background-image: url(../img/after.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+
+  opacity: 0;
+  z-index: 2;
+  animation: after-fadein 0.8s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes text01-fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes after-fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* 3枚目 */
+.HERO-interior {
+  position: absolute;
+  top: calc(var(--frame-pad) * 2);
+  left: 0;
+  /* ナビゲーション枠（ないと画像被る）------------------------ */
+  right: calc(var(--side-w) + var(--frame-pad));
+  bottom: 0;
+
+  background-image: url(../img/momo-\ Interior.png);
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0;
+  z-index: 3;
+  animation: interior-fadein 0.8s ease-out forwards;
+  animation-delay: 2.2s;
+
+  pointer-events: none;
+}
+
+.HERO-spece,
+.HERO-line,
+.HERO-cacth {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes interior-fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ナビゲーションレイアウト（L字） 疑似クラスルートで変数プロパティ入力 */
+:root {
+  --frame-pad: 24px;
+  --side-w: 220px;
+  --concept-h: 120px;
+  --logo-h: 72px;
+}
+
+.store-name {
+  position: relative;
+  /* ナビ以外の無効化 */
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.store-name::after {
+  content: "";
+  position: absolute;
+  top: 48px;
+  left: 220px;
+  right: 70px;
+  height: 1px;
+  background: #111;
+}
+
+.brand-logo {
+  display: block;
+  width: 60px;
+  height: auto;
+  border: 1px solid #111;
+  border-radius: 30%;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: #000;
+  font-size: 32px;
+  margin-top: -12px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-menu {
+  color: #111;
+  text-decoration: none;
+}
+
+.nav-menu:hover {
+  color: #555;
+  opacity: 0.6;
+}
+
+.side-nav {
+  position: relative;
+}
+
+.side-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: -130px;
+  left: 47px;
+  width: 1px;
+  background-color: #111;
+}
+
+.HERO-before,
+.HERO-after,
+.HERO-interior {
+  top: calc(var(--frame-pad) + var(--logo-h));
+}
+
+.main-page {
+  padding-right: 0;
+}
+
+.brand,
+.side-nav,
+.vision {
+  pointer-events: auto;
+}
+
+.brand {
+  position: absolute;
+  top: var(--frame-pad);
+  left: var(--frame-pad);
+}
+
+.side-nav {
+  position: absolute;
+  top: var(--frame-pad);
+  right: var(--frame-pad);
+  width: var(--side-w);
+  height: calc(100vh - (var(--frame-pad) * 2) - var(--concept-h));
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.vision {
+  position: absolute;
+  right: var(--frame-pad);
+  bottom: var(--frame-pad);
+  width: var(--side-w);
+  min-height: var(--concept-h);
+  border-top: solid 2px rgba(0, 0, 0, 35);
+  padding-top: 15px;
+}
+
+/* HTMLのボタン消し---------- */
+#menu-open,
+#menu-close,
+.btn-menu {
+  display: none;
+}
+
+/* コンセプト---------------------------------------- */
+.concept {
+  position: relative;
+  padding: 150px 120px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 背景 */
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(52, 56, 66);
+
+  /* フェードアウト */
+  transition: opacity 1.4s ease;
+  z-index: 9999;
+}
+
+/* フェードアウトクラス */
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* JSのCSSここまで---------------------------------- */
+
+.momo-title {
+  font-size: 36px;
+  padding-bottom: 8px;
+}
+
+.text-one {
+  display: flex;
+  align-items: center;
+  padding-bottom: 8px;
+}
+
+.text-one:before {
+  border: 1px solid #8c8c8c;
+  content: "";
+  width: 5em;
+}
+
+.text-two {
+  display: flex;
+  align-items: center;
+}
+
+.text-two:after {
+  border: 1px solid #8c8c8c;
+  content: "";
+  width: 10rem;
+}
+
+.number {
+  position: absolute;
+  top: 110px;
+  left: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #333;
+  transform: rotate(45deg);
+}
+
+.number span {
+  transform: rotate(-45deg);
+}
+
+.concept-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 60px;
+}
+
+.concept-title::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.momo-cut-illustration {
+  width: 500px;
+  max-width: 40vw;
+  height: auto;
+}
+
+/* ------------------------------- */
+
+/* Feature------------------------ */
+.feature {
+  position: relative;
+  padding: 60px 120px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  opacity: 0;
+}
+
+.feature-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  /* 黒丸除去（全体） */
+  list-style: none;
+}
+
+/* 型のテキスト修正 */
+.feature-third {
+  display: inline-block;
+  text-align: left;
+}
+
+/* 小タイトル */
+.feature-num {
+  width: 300px;
+  height: auto;
+  text-align: center;
+}
+
+.feature-name {
+  margin-bottom: 8px;
+}
+
+.featture-name-sub {
+  margin-bottom: 16px;
+}
+
+/* 文章左揃え */
+.feature-text {
+  text-align: left;
+}
+
+.feature-two {
+  margin-bottom: 3px;
+}
+
+.num-img {
+  width: 100%;
+  height: 250px;
+  border: 1px solid #333;
+  padding: 16px;
+  background: #fff;
+  border-radius: 40px;
+  object-fit: contain;
+  position: relative;
+}
+
+.num {
+  /* 中を透明 */
+  color: transparent;
+  /* テキストに縁取り */
+  -webkit-text-stroke: 1px #111;
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: 0.1em;
+}
+
+.type-list {
+  list-style: none;
+}
+
+/* flow-サービスの流れ--------------------------------------------- */
+.frow {
+  position: relative;
+  text-align: center;
+  padding: 20px 120px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.frow-name {
+  font-size: 36px;
+  margin-bottom: 4px;
+}
+
+.frow-name-sub {
+  margin-bottom: 24px;
+}
+
+.img-box-num {
+  width: 300px;
+  height: auto;
+}
+
+.frow-frame {
+  list-style: none;
+}
+
+.frow-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 48px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.frow-title {
+  display: block;
+  background-color: #333;
+  color: #eee;
+  padding: 18px 24px;
+  border-radius: 10px;
+  text-align: center;
+  /* 下だけ空ける---------- */
+  margin: 0 0 30px;
+}
+
+.frow-step {
+  /* 伸ばすもの */
+  flex-grow: 1;
+  position: relative;
+  padding-bottom: 36px;
+}
+
+/* 最後の子要素の矢印非表示 */
+.frow-list:last-child .frow-step::after {
+  display: none;
+}
+
+/* 矢印配置-------------------------- */
+
+.frow-step::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* 定位置 */
+  bottom: 0;
+  margin: 30px auto 0;
+
+  /* 矢印本体------------ */
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #333;
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* MENU--------------------- */
+.menu-list {
+  position: relative;
+  padding: 60px 120px 120px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.momo-menu-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.momo-menu-title::before,
+.momo-menu-title::after {
+  content: "";
+  border: 1px solid #111;
+  width: 20rem;
+}
+
+.momo-menu {
+  border-top: 1px solid #222;
+}
+
+.momo-menu-text {
+  padding-bottom: 12px;
+}
+
+.momo-menu-price {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  column-gap: 24px;
+}
+
+.momo-cut {
+  font-weight: 700;
+  font-size: 20px;
+  padding-top: 12px;
+}
+
+.momo-cut-text {
+  display: block;
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  padding-bottom: 24px;
+}
+
+/* オプションのメニュー固定 */
+.momo-menu-price-opt {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  column-gap: 24px;
+}
+
+/* 料金 */
+.momo-price-text {
+  padding-top: 12px;
+}
+
+.momo-cut-opt {
+  font-weight: 600;
+  font-size: 18px;
+  padding-top: 12px;
+}
+
+.menu-option {
+  border-top: 1px solid #222;
+  padding-top: 12px;
+}
+
+/* レーダー ---------------------*/
+.momoRadar {
+  justify-self: center;
+  width: min(860px, 100%);
+}
+
+.momoRadar-header {
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.momoRadar-title {
+  font-size: 18px;
+  margin: 0 0 6px;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.momoRadar-total {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.momoRadar-totalPrice,
+.momoRadar-choice-Count {
+  font-weight: 700;
+}
+
+.momoRadar-options {
+  display: flex;
+  /* 横---折り返し */
+  flex-wrap: wrap;
+  gap: 10px;
+  /* 上18px-----下18px */
+  margin: 18px 0 18px;
+}
+
+.momoRadar-Btn {
+  padding: 10px 12px;
+  border: 1px solid #333;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* JS起動時----色 */
+.momoRadar-Btn.is-active {
+  background: #111;
+  color: #fff;
+}
+
+/* レーダーチャート大きさ調整---------- */
+.momoRadar-chart {
+  width: 320px;
+  height: 320px;
+  margin: 40px auto;
+}
+
+#momoRadarChart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ------------------------------- */
+
+.momoRadar-value {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #333;
+}
+
+.momoRadar-dummy-pege {
+  grid-column: 2;
+  grid-row: 1;
+  /* 子要素だけ動かしたいのでself */
+  justify-self: end;
+  align-self: center;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+}
+
+.momoRadar-total {
+  grid-column: 1 / -1;
+}
+
+/* スタイリスト-------------------------- */
+.stylist {
+  position: relative;
+  padding: 100px 120px 150px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  opacity: 0;
+}
+
+.stylist-title {
+  text-align: center;
+  font-size: 36px;
+}
+
+.stylist-title-sub {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.stylist-list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.stylist-list-mem {
+  width: 360px;
+  height: auto;
+  text-align: center;
+  color: #eee;
+  background-color: transparent;
+}
+
+.mem-img {
+  width: 360px;
+  height: auto;
+}
+
+.stylist-name {
+  background-color: #222;
+  margin-bottom: 4px;
+}
+
+.stylist-name-sub {
+  background-color: #222;
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.stylist-name-sub::after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 70%;
+  /* leftで半分の位置にしtransformで調整 */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -16px;
+  background: #222;
+}
+
+/* ------------------------------------ */
+
+/* 会社概要------------------------------ */
+.campany {
+  position: relative;
+  text-align: center;
+  padding: 100px 120px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.campany-info {
+  max-width: 600px;
+  margin: 60px auto 0;
+}
+
+.campany-list {
+  list-style: none;
+  position: relative;
+}
+
+.campany-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 120px;
+  width: 2px;
+  background-color: #222;
+}
+
+.campany-title {
+  font-size: 36px;
+}
+
+.campany-page {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding: 8px 0;
+}
+
+.campany-label {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #111;
+}
+
+.campany-text {
+  color: #222;
+}
+
+/* ダイヤの２から６まで*/
+.number-six {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 24px;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(45deg);
+}
+
+.number-six span {
+  transform: rotate(-45deg);
+  letter-spacing: 2px;
+}
+
+/* フッター------------------------------ */
+/* 予備用 */
+/* .site-footer {
+  margin-top: 30px;
+  padding: 60px 0;
+  background-color: #f5f5f5;
+} */
+
+.site-footer-frame {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+#particle-container {
+  position: relative;
+  margin-top: 30px;
+  padding: 60px 0;
+  overflow: hidden;
+  background: radial-gradient(rgb(94, 96, 102), rgb(100, 103, 111));
+}
+
+.particle {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  animation: snow 5s linear infinite;
+}
+
+@keyframes snow {
+  0% {
+    translate: 0 0;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    translate: 0 100px;
+    opacity: 0;
+  }
+}
+
+.site-footer-last {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #000;
+}
+
+.site-footer-last::before,
+.site-footer-last::after {
+  content: "";
+  border: 1px solid #333;
+  width: 250px;
+}
+
+/* ------------------------------------- */
+
+/* ダミーページCSS */
+.dummy-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.dummy-page-fake {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* スマホ調整--------------------------- */
+@media screen and (max-width: 575px) {
+  .HERO {
+    padding: 80px 0 0;
+    margin: 0 auto;
+  }
+
+  #menu-open,
+  #menu-close,
+  .btn-menu {
+    pointer-events: auto;
+  }
+
+  #menu-open {
+    display: block;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+  }
+
+  .btn-menu {
+    display: block;
+  }
+
+  #menu-close {
+    display: none;
+  }
+
+  .HERO-interior {
+    position: static;
+    height: 100vh;
+
+    background-size: auto 100%;
+    background-position: 90%;
+    animation: none;
+    opacity: 1;
+  }
+
+  .HERO-before,
+  .HERO-after,
+  .HERO-line,
+  .HERO-text01,
+  .HERO-text02 {
+    display: none;
+    animation: none;
+  }
+
+  .store-name::after,
+  .side-nav::before {
+    content: none;
+  }
+
+  .vision {
+    display: none;
+  }
+
+  /*メニューボタン-----------スマホ版ナビ */
+  .btn-menu {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 1;
+    padding: 1rem;
+    color: #fff;
+    background: rgb(51, 55, 83);
+    width: 100px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    transition: 0.4s;
+  }
+
+  #menu-close {
+    z-index: 3;
+  }
+
+  .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    background: #eee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.4s;
+  }
+
+  .menu {
+    list-style: none;
+    text-align: center;
+  }
+
+  .menu a {
+    color: #0bd;
+    display: block;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+
+  .menu a:hover {
+    color: #05b;
+  }
+
+  .panel-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* コンセプトスマホ調整----------- */
+
+  .concept {
+    padding: 24px 16px;
+  }
+
+  /* ローディング非表示 */
+  #loading {
+    display: none;
+  }
+
+  .momo-title {
+    padding-top: 16px;
+  }
+
+  .concept-title {
+    display: block;
+  }
+
+  .number {
+    position: static;
+    margin: 0 auto 12px;
+  }
+
+  .concept-image {
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .momo-cut-illustration {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* featureの調整----------------------- */
+
+  .feature {
+    padding: 80px 16px;
+  }
+
+  .feature-title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .feature-list {
+    /* 横を立てにする */
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+
+  /*------------------------------------  */
+
+  /* FROW調整---------------------------- */
+
+  .frow {
+    padding: 48px 16px 72px;
+  }
+
+  .frow-name {
+    font-size: 26px;
+  }
+
+  .frow-name-sub {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .frow-frame {
+    margin: 0;
+    padding: 0;
+  }
+
+  .frow-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    flex-wrap: nowrap;
+  }
+
+  .img-box {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .img-box-num {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .frow-title {
+    font-size: 16px;
+  }
+
+  .frow-step {
+    width: 100%;
+    padding-bottom: 28px;
+  }
+
+  /* MENUスマホ調整---------------------- */
+  .menu-list {
+    padding: 80px 16px;
+  }
+
+  .momoRadar {
+    padding: 80px 24px;
+  }
+
+  /* ----------------------------------- */
+  /* stylistスマホ調整------------------- */
+  .stylist {
+    padding: 80px 16px;
+  }
+
+  .stylist-list {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+
+  /* ----------------------------------- */
+
+  /* campanyスマホ調整------------------- */
+  .campany {
+    padding: 80px 16px;
+  }
+
+  .campany-list {
+    font-weight: 500;
+  }
+
+  .campany-page {
+    display: grid;
+    /* PC版（120px）より広くした。理由-住所のレイアウトを整えるため */
+    grid-template-columns: 140px 1fr;
+  }
+
+  .campany-text {
+    /* 文字横制限 */
+    inline-size: 200px;
+  }
+
+  /* ----------------------------------- */
+  /* フッタースマホ調整------------------- */
+  .site-footer {
+    margin: 0;
+    padding: 60px 16px;
+  }
+
+  .site-footer-last {
+    font-size: 16px;
+  }
+
+  .site-footer-last::before,
+  .site-footer-last::after {
+    content: "";
+    border: 1px solid #333;
+    width: 70px;
+  }
+
+  /* ----------------------------------- */
+}
