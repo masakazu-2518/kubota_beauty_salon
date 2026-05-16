@@ -41,7 +41,7 @@ body {
   position: absolute;
   inset: 0;
   height: calc((100%-10px) / 2);
-  background-image: url(../img/before.png);
+  background-image: url(../img/before.webp);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: auto 100%;
@@ -130,7 +130,7 @@ body {
   position: absolute;
   inset: 0;
   height: calc((100%-10px) / 2);
-  background-image: url(../img/after.png);
+  background-image: url(../img/after.webp);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
@@ -170,7 +170,7 @@ body {
   right: calc(var(--side-w) + var(--frame-pad));
   bottom: 0;
 
-  background-image: url(../img/momo-\ Interior.png);
+  background-image: url(../img/momo-Interior.webp);
   background-size: cover;
   background-position: center;
 
